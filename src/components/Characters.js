@@ -16,7 +16,13 @@ const Characters = () => {
 
   // Consists of setting a unique key for react query important internal functions
   // Consists of giving a function that is going to do the fetching and return the data
-  const { data, status } = useQuery(['characters', page], fetchCharacters)
+  const { data, status, isPreviousData } = useQuery(
+    ['characters', page],
+    fetchCharacters,
+    {
+      keepPreviousData: true,
+    }
+  )
   console.log(data)
   console.log(status)
 
@@ -38,7 +44,7 @@ const Characters = () => {
           Previous
         </button>
         <button
-          disabled={data.info.next === null}
+          disabled={isPreviousData && !data.info.next}
           onClick={() => setPage(page + 1)}
         >
           Next
