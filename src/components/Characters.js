@@ -33,6 +33,17 @@ const Characters = () => {
       {data.results.map((character, index) => (
         <Character character={character} key={index} />
       ))}
+      <div>
+        <button disabled={page === 1} onClick={() => setPage(page - 1)}>
+          Previous
+        </button>
+        <button
+          disabled={data.info.next === null}
+          onClick={() => setPage(page + 1)}
+        >
+          Next
+        </button>
+      </div>
     </div>
   )
 }
